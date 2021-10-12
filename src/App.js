@@ -8,27 +8,45 @@ function App() {
   const [buttonType, setButtonType] = useState("");
   const userpage = "http://jsonplaceholder.typicode.com/users";
   const todopage = "http://jsonplaceholder.typicode.com/todos";
+  document.title = "Users & To-Do Lists";
 
   useEffect(() => {
-    async function loadUsers() {
-      const response = await fetch(userpage);
+    const abortController = new AbortController();
+    async function loadUsers() { try{
+      const response = await fetch(userpage, { signal: abortController.signal });
       const usersFromAPI = await response.json();
       setUsers(usersFromAPI);
+    } catch(error) {
+      console.log("Error!");
+      throw error;
     }
+  }
     loadUsers();
+    return () => {
+      console.log("Cleanup1");
+      return abortController.abort();
+    }
   }, []);
 
   useEffect(() => {
-    async function loadTodos() {
-      const response = await fetch(todopage);
+    const abortController = new AbortController();
+    async function loadTodos() { try{
+      const response = await fetch(todopage, { signal: abortController.signal });
       const todosFromAPI = await response.json();
       setTodos(todosFromAPI);
+    } catch(error) {
+      console.log("Error!");
+      throw error;
     }
-
+  }
     loadTodos();
+    return () => {
+      console.log("Cleanup2");
+      return abortController.abort();
+    }
   }, [currentUser]);
 
-  console.log(users, todos, buttonType);
+  //console.log(users, todos, buttonType);
   let usersX = users.slice(0, 8);
 
   return (
