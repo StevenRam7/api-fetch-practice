@@ -9,6 +9,7 @@ function App() {
   const userpage = "http://jsonplaceholder.typicode.com/users";
   const todopage = "http://jsonplaceholder.typicode.com/todos";
   document.title = "Users & To-Do Lists";
+  let time = Date.now();
 
   useEffect(() => {
     const abortController = new AbortController();
@@ -47,10 +48,11 @@ function App() {
   }, [currentUser]);
 
   //console.log(users, todos, buttonType);
-  let usersX = users.slice(0, 8);
+  let usersX = users.slice(0, 9);
 
   return (
     <div className="App">
+      <h1>Users {"&"} To-Do Lists</h1>
       {usersX.map((user) => (
         <div>
           <h3>{user.name}</h3>
@@ -91,6 +93,7 @@ function App() {
           </div>
         </div>
       ))}
+      <p id="ret">{"Retrieved at: " + new Date(time).toLocaleString("en-US")}</p>
     </div>
   );
 }

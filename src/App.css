@@ -44,3 +44,9 @@ h3 {
 .todo-info {
   margin-top: 10px;
 }
+
+#ret {
+  margin-bottom: 5px;
+  margin-top: 15px;
+  font-style: italic;
+}
