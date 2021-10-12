@@ -31,10 +31,12 @@ useEffect(() => {
 
 console.log(users, todos)
 
+let usersX = users.slice(0, 8);
+
   return (
     <div className="App">
  
-      {users.map((user) => (
+      {usersX.map((user) => (
         <div>
         <h3>{user.name}</h3>
         <button onClick={() => setCurrentUser(user.name)}>See Details</button>
@@ -48,6 +50,12 @@ console.log(users, todos)
         <p>Website: <span id="website">{user.website}</span></p>
         </div>
         }
+        <div className="todo-info">
+        {currentUser === user.id &&  todos.map((todo) => (
+          todo.userId === currentUser ? <li>{todo.title}</li> : null
+         
+        ))} 
+        </div>
         </div>
       ))}
        
