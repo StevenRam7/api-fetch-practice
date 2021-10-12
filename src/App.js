@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import { useState, useEffect } from 'react';
 import './App.css';
 
@@ -34,6 +33,7 @@ console.log(users, todos)
 
   return (
     <div className="App">
+ 
       {users.map((user) => (
         <div>
         <h3>{user.name}</h3>
@@ -43,6 +43,9 @@ console.log(users, todos)
         {currentUser === user.name && <div className="details">
         <p>Username: {user.username}</p>
         <p>Email: {user.email}</p>
+        <p>Phone #: {user.phone}</p>
+        <p>Company: {user.company.name}</p>
+        <p>Website: <span id="website">{user.website}</span></p>
         </div>
         }
         </div>
@@ -52,5 +55,5 @@ console.log(users, todos)
     </div>
   );
 }
-//<img src={logo} className="App-logo" alt="logo" />
+
 export default App;
